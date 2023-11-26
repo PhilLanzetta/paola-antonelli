@@ -25,12 +25,12 @@ const IndexPage = ({ data }) => {
                   alt={featuredImage.description}
                 ></GatsbyImage>
               </div>
-              <div>
+              <div className='project-card-text'>
                 <div>
-                  <p>{title}</p>
+                  <p className='project-card-title'>{title}</p>
                   <p>{metadata.tags[0]?.name}</p>
                 </div>
-                <button>{category}</button>
+                <button className='project-card-category'>{category}</button>
               </div>
             </div>
           )

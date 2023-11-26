@@ -4,16 +4,15 @@ import useWindowSize from '../utils/useWindowSize'
 
 const Layout = ({ children }) => {
   const {width} = useWindowSize()
-  const mobile = width > 600
+  const desktop = width > 601
   return (
     <>
       <Header />
-      {mobile && (
+      {desktop && (
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          width='141.908'
-          height='141.908'
           viewBox='0 0 141.908 141.908'
+          className='octopus-icon'
         >
           <g id='noun-octopus-2691001' transform='translate(-5.368 -0.5)'>
             <rect
