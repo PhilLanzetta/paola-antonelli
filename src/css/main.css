@@ -317,3 +317,8 @@ Home
   padding: 5px;
   font-size: var(--font-sm);
 }
+
+.page-container {
+  padding: var(--space-5);
+  padding-top: 0;
+}

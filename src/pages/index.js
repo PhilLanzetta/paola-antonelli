@@ -11,12 +11,12 @@ const IndexPage = ({ data }) => {
     <Layout>
       <div className='home-container'>
         {projects.map((project) => {
-          const { title, category, featuredImage, metadata } = project
+          const { title, category, featuredImage, metadata, slug } = project
           const imgWidth =
             (featuredImage.gatsbyImageData.width * 20) /
             featuredImage.gatsbyImageData.height
           return (
-            <div className='project-card'>
+            <Link className='project-card' to={`/${slug}`}>
               <div className='project-card-img-container'>
                 <GatsbyImage
                   className='project-card-img'
@@ -32,7 +32,7 @@ const IndexPage = ({ data }) => {
                 </div>
                 <button className='project-card-category'>{category}</button>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>
@@ -50,6 +50,7 @@ export const query = graphql`
           gatsbyImageData
         }
         title
+        slug
         metadata {
           tags {
             contentful_id

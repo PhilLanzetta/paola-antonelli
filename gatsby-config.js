@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
