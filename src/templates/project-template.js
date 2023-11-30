@@ -5,13 +5,36 @@ import Content from '../components/content'
 import HeroCarousel from '../components/heroCarousel'
 
 const ProjectTemplate = ({ data }) => {
-  const { title, year, fullDates, metadata, heroImages, bodyContent } =
-    data.contentfulProjectPage
+  const {
+    title,
+    year,
+    fullDates,
+    metadata,
+    heroImages,
+    bodyContent,
+    introductionText,
+  } = data.contentfulProjectPage
   return (
     <Layout>
       <div className='page-container'>
         <HeroCarousel images={heroImages}></HeroCarousel>
-        <div>{title}</div>
+        <div className='project-heading-row'>
+          <div className='project-heading-tag'>
+            {metadata?.tags?.length > 0 ? metadata.tags[0].name : ''}
+          </div>
+          <div className='project-heading-title'>{title}</div>
+          <div className='project-heading-date'>
+            {fullDates ? fullDates : year}
+          </div>
+        </div>
+        {introductionText && (
+          <div
+            className='project-intro-text'
+            dangerouslySetInnerHTML={{
+              __html: introductionText.childMarkdownRemark.html,
+            }}
+          ></div>
+        )}
         {bodyContent && <Content content={bodyContent}></Content>}
       </div>
     </Layout>
@@ -67,6 +90,11 @@ export const query = graphql`
       metadata {
         tags {
           name
+        }
+      }
+      introductionText {
+        childMarkdownRemark {
+          html
         }
       }
     }

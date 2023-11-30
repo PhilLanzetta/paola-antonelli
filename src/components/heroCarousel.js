@@ -35,25 +35,23 @@ function PrevArrow(props) {
   )
 }
 
-const HeroCarousel = ({images}) => {
- const settings = {
-   nextArrow: <NextArrow addClassName='image-next' />,
-   prevArrow: <PrevArrow addClassName='image-prev' />,
- }
+const HeroCarousel = ({ images }) => {
+  const settings = {
+    nextArrow: <NextArrow addClassName='image-next' />,
+    prevArrow: <PrevArrow addClassName='image-prev' />,
+  }
   return (
     <div>
       <Slider {...settings} className='work-slides'>
-        {images?.map(image => {
+        {images?.map((image) => {
           return (
-            <div
-              className='work-slides-container'
-              key={image.id}
-            >
+            <div className='work-slides-container' key={image.id}>
               <div className='work-slide-img-container'>
                 <GatsbyImage
                   image={image?.gatsbyImageData}
                   alt={image?.description}
                   className='work-slide-img'
+                  imgStyle={{ objectFit: 'contain' }}
                 ></GatsbyImage>
               </div>
             </div>
