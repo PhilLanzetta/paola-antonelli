@@ -49,6 +49,7 @@ button {
   --size-content: 54rem;
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
+  --body-max-width: clamp(590px, 50%, 1480px);
 }
 html {
   -webkit-text-size-adjust: 100%;
@@ -188,9 +189,6 @@ p *:last-child {
 li > p {
   margin-bottom: calc(var(--space-4) / 2);
 }
-p {
-  max-width: 680px;
-}
 code {
   font-size: 0.875rem;
 }
@@ -233,6 +231,10 @@ pre code:after,
 pre tt:before,
 pre tt:after {
   content: none;
+}
+
+figcaption {
+  font-size: 80%;
 }
 
 /*
@@ -321,4 +323,73 @@ Home
 .page-container {
   padding: var(--space-5);
   padding-top: 0;
+}
+
+.two-even-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.two-columns-right-heavy {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-3);
+}
+
+.two-columns-left-heavy {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-3);
+}
+
+.three-even-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.four-even-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.module-text-container,
+.in-text {
+  width: var(--body-max-width);
+  margin: var(--space-5) auto;
+}
+
+.full-bleed {
+  width: 100%;
+  margin: var(--space-5) 0;
+}
+
+.image-prev,
+.image-next {
+  position: absolute;
+  width: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  cursor: pointer;
+}
+
+.image-next {
+  right: 0;
+}
+
+.work-slides, .work-slides-container {
+  height: 90vh;
+}
+
+.work-slides-container {
+  max-height: 100%;
+}
+
+.work-slide-img-container {
+  display: flex;
+  justify-content: center;
+  max-height: 100%;
 }

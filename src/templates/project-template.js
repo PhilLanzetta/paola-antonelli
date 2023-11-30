@@ -1,13 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import Content from '../components/content'
+import HeroCarousel from '../components/heroCarousel'
 
 const ProjectTemplate = ({ data }) => {
   const { title, year, fullDates, metadata, heroImages, bodyContent } =
     data.contentfulProjectPage
   return (
     <Layout>
-      <div className='page-container'>{title}</div>
+      <div className='page-container'>
+        <HeroCarousel images={heroImages}></HeroCarousel>
+        <div>{title}</div>
+        {bodyContent && <Content content={bodyContent}></Content>}
+      </div>
     </Layout>
   )
 }
@@ -17,7 +23,7 @@ export const query = graphql`
     contentfulProjectPage(slug: { eq: $slug }) {
       bodyContent {
         ... on ContentfulMultiImageModule {
-          id
+          multiImageId: id
           images {
             caption
             id
@@ -30,7 +36,7 @@ export const query = graphql`
           style
         }
         ... on ContentfulSingleImageModule {
-          id
+          singleImageId: id
           image {
             caption
             id
@@ -42,7 +48,7 @@ export const query = graphql`
           margin
         }
         ... on ContentfulTextModule {
-          id
+          bodyTextId: id
           text {
             childMarkdownRemark {
               html
