@@ -44,7 +44,7 @@ button {
   --space-2: 8px;
   --space-3: 16px;
   --space-4: 24px;
-  --space-5: 32px;
+  --space-5: 5vw;
   --space-6: 64px;
   --size-content: 54rem;
   --size-gutter: var(--space-5);
@@ -421,4 +421,56 @@ Home
 .project-intro-text {
   width: var(--body-max-width);
   margin: var(--space-5) auto;
+}
+
+.about-headshot-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+}
+
+.about-headshot {
+  max-width: 80%;
+}
+
+.about-name {
+  text-align: center;
+}
+
+.about-biography {
+  width: var(--body-max-width);
+  margin: var(--space-5) auto;
+}
+
+.about-list-title {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.about-list-container {
+  padding-left: 25%;
+}
+
+.about-list-item {
+  display: grid;
+  grid-template-columns: 4fr 4fr 1fr;
+}
+
+.about-list-item p:last-of-type {
+  text-align: right;
+}
+
+.contact-title {
+  text-align: center;
+}
+
+.contact-info-container {
+  width: var(--body-max-width);
+  margin: var(--space-5) auto;
+}
+
+.contact-info-container > div {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }

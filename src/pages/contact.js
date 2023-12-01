@@ -6,7 +6,33 @@ import Seo from '../components/seo'
 const ContactPage = () => (
   <Layout>
     <div>
-      <h1>Paola Antonelli</h1>
+      <h1 className='contact-title'>Paola Antonelli</h1>
+      <div className='contact-info-container'>
+        <div>
+          <a href='mailto:paola@paolaantonelli.com'>paola@paolaantonelli.com</a>
+          <p>Email</p>
+        </div>
+        <div>
+          <a
+            href='https://twitter.com/curiousoctopus'
+            target='_blank'
+            rel='noreferrer'
+          >
+            @curiousoctopus
+          </a>
+          <p>Twitter</p>
+        </div>
+        <div>
+          <a
+            href='https://instagram.com/paolaantonelli'
+            target='_blank'
+            rel='noreferrer'
+          >
+            @paolaantonelli
+          </a>
+          <p>Instagram</p>
+        </div>
+      </div>
     </div>
   </Layout>
 )
