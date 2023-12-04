@@ -1,41 +1,35 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
+import ProjectGrid from '../components/projectGrid'
+import ProjectList from '../components/projectList'
 
-const IndexPage = ({ data }) => {
-  const projects = data.allContentfulProjectPage.nodes
+const IndexPage = ({ data, location }) => {
+  const allProjects = data.allContentfulProjectPage.nodes
+  const [projects, setProjects] = useState(allProjects)
+  const [category, setCategory] = useState(location.state?.category || [])
+  const [view, setView] = useState()
+
+  useEffect(() => {
+    if (localStorage.getItem('view')) {
+      setView(localStorage.getItem('view'))
+    } else {
+      setView('grid')
+    }
+  }, [])
+
   return (
-    <Layout>
-      <div className='home-container'>
-        {projects.map((project) => {
-          const { title, category, featuredImage, metadata, slug } = project
-          const imgWidth =
-            (featuredImage.gatsbyImageData.width * 20) /
-            featuredImage.gatsbyImageData.height
-          return (
-            <Link className='project-card' to={`/${slug}`}>
-              <div className='project-card-img-container'>
-                <GatsbyImage
-                  className='project-card-img'
-                  style={{ width: `${imgWidth}vw` }}
-                  image={featuredImage.gatsbyImageData}
-                  alt={featuredImage.description}
-                ></GatsbyImage>
-              </div>
-              <div className='project-card-text'>
-                <div>
-                  <p className='project-card-title'>{title}</p>
-                  <p>{metadata.tags[0]?.name}</p>
-                </div>
-                <button className='project-card-category'>{category}</button>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+    <Layout
+      location={location}
+      setProjects={setProjects}
+      category={category}
+      setCategory={setCategory}
+      view={view}
+      setView={setView}
+    >
+      {view === 'grid' && <ProjectGrid projects={projects}></ProjectGrid>}
+      {view === 'list' && <ProjectList projects={projects}></ProjectList>}
     </Layout>
   )
 }
@@ -45,12 +39,14 @@ export const query = graphql`
     allContentfulProjectPage {
       nodes {
         category
+        id
         featuredImage {
           description
           gatsbyImageData
         }
         title
         slug
+        year
         metadata {
           tags {
             contentful_id

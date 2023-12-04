@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
+import { RiLayoutGridFill } from 'react-icons/ri'
+import { PiListBold } from 'react-icons/pi'
 
-const Header = () => (
+const Header = ({ location, view, setView, category, setCategory }) => (
   <header>
     <Link to='/' className='header-link'>
       <strong>Paola Antonelli</strong>
@@ -20,6 +22,24 @@ const Header = () => (
     <Link to='/contact' className='header-link'>
       Contact
     </Link>
+    <button
+      className={`header-link ${view === 'grid' ? 'active-header-link' : ''}`}
+      onClick={() => {
+        localStorage.setItem('view', 'grid')
+        setView('grid')
+      }}
+    >
+      <RiLayoutGridFill></RiLayoutGridFill>
+    </button>
+    <button
+      className={`header-link ${view === 'list' ? 'active-header-link' : ''}`}
+      onClick={() => {
+        localStorage.setItem('view', 'list')
+        setView('list')
+      }}
+    >
+      <PiListBold></PiListBold>
+    </button>
   </header>
 )
 

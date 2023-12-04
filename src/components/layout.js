@@ -2,12 +2,25 @@ import * as React from 'react'
 import Header from './header'
 import useWindowSize from '../utils/useWindowSize'
 
-const Layout = ({ children }) => {
-  const {width} = useWindowSize()
+const Layout = ({
+  children,
+  location,
+  view,
+  setView,
+  category,
+  setCategory,
+}) => {
+  const { width } = useWindowSize()
   const desktop = width > 601
   return (
     <>
-      <Header />
+      <Header
+        location={location}
+        view={view}
+        setView={setView}
+        category={category}
+        setCategory={setCategory}
+      />
       {desktop && (
         <svg
           xmlns='http://www.w3.org/2000/svg'
