@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Content from '../components/content'
 import HeroCarousel from '../components/heroCarousel'
+import HeroVideo from '../components/heroVideo'
 
 const ProjectTemplate = ({ data }) => {
   const {
@@ -12,12 +13,14 @@ const ProjectTemplate = ({ data }) => {
     metadata,
     heroImages,
     bodyContent,
+    heroVideoLink,
     introductionText,
   } = data.contentfulProjectPage
   return (
     <Layout>
       <div className='page-container'>
-        <HeroCarousel images={heroImages}></HeroCarousel>
+        {heroImages && <HeroCarousel images={heroImages}></HeroCarousel>}
+        {heroVideoLink && <HeroVideo video={heroVideoLink}></HeroVideo>}
         <div className='project-heading-row'>
           <div className='project-heading-tag'>
             {metadata?.tags?.length > 0 ? metadata.tags[0].name : ''}
@@ -84,6 +87,7 @@ export const query = graphql`
         gatsbyImageData
         id
       }
+      heroVideoLink
       title
       year
       fullDates

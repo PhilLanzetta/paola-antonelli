@@ -517,3 +517,8 @@ Home
   border-bottom: 1px solid #000;
   padding: var(--space-2) 0;
 }
+
+.hero-video-container {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
