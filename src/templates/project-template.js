@@ -81,6 +81,11 @@ export const query = graphql`
             }
           }
         }
+        ... on ContentfulVideoModule {
+          videoModuleId: id
+          videoLink
+          videoCaption
+        }
       }
       heroImages {
         description

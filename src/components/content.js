@@ -2,6 +2,7 @@ import React from 'react'
 import SingleImageModule from './singleImageModule'
 import MultiImageModule from './multiImageModule'
 import BodyTextModule from './bodyTextModule'
+import VideoModule from './videoModule'
 
 const Content = ({ content }) => {
   return (
@@ -27,6 +28,10 @@ const Content = ({ content }) => {
               key={item.bodyTextId}
               content={item}
             ></BodyTextModule>
+          )
+        } else if (item.videoModuleId) {
+          return (
+            <VideoModule key={item.videoModuleId} content={item}></VideoModule>
           )
         } else {
           return <div>Unknown Content Type</div>

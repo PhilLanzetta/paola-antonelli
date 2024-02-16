@@ -498,7 +498,8 @@ Home
   grid-template-columns: 3fr 1fr;
 }
 
-.project-list-header, .project-list-row {
+.project-list-header,
+.project-list-row {
   display: grid;
   grid-template-columns: 3fr repeat(3, 1fr);
 }
@@ -521,4 +522,8 @@ Home
 .hero-video-container {
   position: relative;
   aspect-ratio: 16 / 9;
+}
+
+.video-module-container {
+  margin: var(--space-5) 0;
 }
