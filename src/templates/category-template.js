@@ -5,7 +5,7 @@ import Seo from '../components/seo'
 import ProjectGrid from '../components/projectGrid'
 import ProjectList from '../components/projectList'
 
-const IndexPage = ({ data, location }) => {
+const CategoryPage = ({ data, location }) => {
   const projects = data.allContentfulProjectPage.nodes
   const [view, setView] = useState()
 
@@ -30,8 +30,8 @@ const IndexPage = ({ data, location }) => {
 }
 
 export const query = graphql`
-  query {
-    allContentfulProjectPage {
+  query getSingleCategory($category: String) {
+    allContentfulProjectPage(filter: { category: { eq: $category } }) {
       nodes {
         category
         id
@@ -60,4 +60,4 @@ export const query = graphql`
  */
 export const Head = () => <Seo title='Home' />
 
-export default IndexPage
+export default CategoryPage

@@ -17,7 +17,7 @@ const ProjectTemplate = ({ data }) => {
     introductionText,
   } = data.contentfulProjectPage
   return (
-    <Layout>
+    <Layout view={false}>
       <div className='page-container'>
         {heroImages && <HeroCarousel images={heroImages}></HeroCarousel>}
         {heroVideoLink && <HeroVideo video={heroVideoLink}></HeroVideo>}
