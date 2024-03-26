@@ -280,6 +280,10 @@ header {
   transition: all 400ms;
 }
 
+.elipsis {
+  font-size: 50%;
+}
+
 /*
 =============== 
 Home

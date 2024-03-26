@@ -7,8 +7,9 @@ const Layout = ({
   location,
   view,
   setView,
-  category,
-  setCategory,
+  categories,
+  handleCategoryClick, 
+  clearParams,
 }) => {
   const { width } = useWindowSize()
   const desktop = width > 601
@@ -18,8 +19,9 @@ const Layout = ({
         location={location}
         view={view}
         setView={setView}
-        category={category}
-        setCategory={setCategory}
+        categories={categories}
+        handleCategoryClick={handleCategoryClick}
+        clearParams={clearParams}
       />
       {desktop && (
         <svg

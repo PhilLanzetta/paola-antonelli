@@ -1,10 +1,17 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { RiLayoutGridFill } from 'react-icons/ri'
 import { PiListBold } from 'react-icons/pi'
 import slugify from 'slugify'
 
-const Header = ({ location, view, setView }) => {
+const Header = ({
+  location,
+  view,
+  setView,
+  handleCategoryClick,
+  categories,
+  clearParams,
+}) => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulProjectPage {
@@ -14,7 +21,7 @@ const Header = ({ location, view, setView }) => {
       }
     }
   `)
-  const categories = data.allContentfulProjectPage.nodes
+  const categoryHeadings = data.allContentfulProjectPage.nodes
     .map((node) => node.category)
     .flat()
     .filter(function onlyUnique(value, index, array) {
@@ -22,21 +29,51 @@ const Header = ({ location, view, setView }) => {
     })
     .sort()
 
+  const [open, setOpen] = useState(false)
+
   return (
     <header>
-      <Link to='/' className='header-link' activeClassName='active-header-link'>
+      <Link to='/' className='header-link' onClick={() => clearParams()}>
         <strong>Paola Antonelli</strong>
       </Link>
-      {categories.map((category, index) => (
-        <Link
-          key={index}
-          className='header-link'
-          activeClassName='active-header-link'
-          to={`/${slugify(category, { lower: true })}`}
-        >
-          {category}
-        </Link>
-      ))}
+      {location?.pathname === '/' &&
+        categoryHeadings.map((category, index) => {
+          const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
+          return (
+            <button
+              key={index}
+              className={
+                categories.length > 0
+                  ? categories.includes(cleanCat)
+                    ? 'header-link active-header-link'
+                    : 'header-link'
+                  : 'header-link'
+              }
+              onClick={() => handleCategoryClick(cleanCat)}
+            >
+              {category}
+            </button>
+          )
+        })}
+      {!location && !open && (
+        <button onClick={() => setOpen(true)} className='header-link elipsis'>
+          &#9724; &#9724; &#9724;
+        </button>
+      )}
+      {!location &&
+        open &&
+        categoryHeadings.map((category, index) => {
+          const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
+          return (
+            <Link
+              key={index}
+              className='header-link'
+              to={`/?filters=${cleanCat}`}
+            >
+              {category}
+            </Link>
+          )
+        })}
       <Link
         to='/about'
         className='header-link'
