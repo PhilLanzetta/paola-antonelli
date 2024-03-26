@@ -41,7 +41,7 @@ const Header = ({
           const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
           return (
             <button
-              key={index}
+              key={index + categories.length}
               className={
                 categories.length > 0
                   ? categories.includes(cleanCat)
