@@ -43,6 +43,8 @@ const Header = ({
       {location?.pathname === '/' &&
         categoryHeadings.map((category, index) => {
           const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
+          console.log(cleanCat)
+          console.log(location.search?.split('=')[1]?.split('-').includes(cleanCat))
           return (
             <button
               key={index}
@@ -50,13 +52,13 @@ const Header = ({
                 categories.length > 0
                   ? categories.includes(cleanCat)
                     ? 'header-link active-header-link'
-                    : 'this ran'
+                    : 'header-link'
                   : location.search
                       ?.split('=')[1]
                       ?.split('-')
                       .includes(cleanCat)
                   ? 'header-link active-header-link'
-                  : 'no this ran'
+                  : 'header-link'
               }
               onClick={() => handleCategoryClick(cleanCat)}
             >
