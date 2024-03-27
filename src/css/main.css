@@ -306,11 +306,16 @@ Home
 .project-card {
   display: flex;
   flex-direction: column;
+  width: 33%;
+  transition: all 400ms;
+}
+
+.project-card-content {
   padding: var(--space-2);
   transition: all 400ms;
 }
 
-.project-card:hover {
+.project-card-content:hover {
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.15);
   transition: all 400ms;
 }
@@ -319,7 +324,6 @@ Home
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vw;
 }
 
 .project-card-img {

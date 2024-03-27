@@ -15,9 +15,10 @@ const ProjectTemplate = ({ data }) => {
     bodyContent,
     heroVideoLink,
     introductionText,
+    category,
   } = data.contentfulProjectPage
   return (
-    <Layout view={false}>
+    <Layout view={false} projectCategory={category}>
       <div className='page-container'>
         {heroImages && <HeroCarousel images={heroImages}></HeroCarousel>}
         {heroVideoLink && <HeroVideo video={heroVideoLink}></HeroVideo>}
@@ -94,6 +95,7 @@ export const query = graphql`
       }
       heroVideoLink
       title
+      category
       year
       fullDates
       metadata {

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import { RiLayoutGridFill } from 'react-icons/ri'
 import { PiListBold } from 'react-icons/pi'
-import slugify from 'slugify'
 
 const Header = ({
   location,
@@ -11,6 +10,7 @@ const Header = ({
   handleCategoryClick,
   categories,
   clearParams,
+  projectCategory,
 }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -33,7 +33,11 @@ const Header = ({
 
   return (
     <header>
-      <Link to='/' className='header-link' onClick={() => clearParams()}>
+      <Link
+        to='/'
+        className='header-link'
+        onClick={location?.pathname === '/' ? () => clearParams() : null}
+      >
         <strong>Paola Antonelli</strong>
       </Link>
       {location?.pathname === '/' &&
@@ -41,7 +45,7 @@ const Header = ({
           const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
           return (
             <button
-              key={index + categories.length}
+              key={index}
               className={
                 categories.length > 0
                   ? categories.includes(cleanCat)
@@ -55,13 +59,34 @@ const Header = ({
             </button>
           )
         })}
-      {!location && !open && (
-        <button onClick={() => setOpen(true)} className='header-link elipsis'>
+      {projectCategory &&
+        projectCategory.map((cat, index) => {
+          const cleanCat = cat.replaceAll('&', '').replaceAll(' ', '')
+          return (
+            <Link
+              key={index}
+              className='header-link active-header-link'
+              to={`/?filters=${cleanCat}`}
+            >
+              {cat}
+            </Link>
+          )
+        })}
+      {!location && (
+        <button
+          onClick={() => setOpen(!open)}
+          className={
+            open
+              ? 'header-link elipsis active-header-link'
+              : 'header-link elipsis'
+          }
+        >
           &#9724; &#9724; &#9724;
         </button>
       )}
       {!location &&
         open &&
+        !projectCategory &&
         categoryHeadings.map((category, index) => {
           const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
           return (
@@ -74,6 +99,23 @@ const Header = ({
             </Link>
           )
         })}
+      {!location &&
+        open &&
+        projectCategory &&
+        categoryHeadings
+          .filter((a) => !projectCategory.includes(a))
+          .map((category, index) => {
+            const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
+            return (
+              <Link
+                key={index}
+                className='header-link'
+                to={`/?filters=${cleanCat}`}
+              >
+                {category}
+              </Link>
+            )
+          })}
       <Link
         to='/about'
         className='header-link'
