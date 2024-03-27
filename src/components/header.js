@@ -51,6 +51,11 @@ const Header = ({
                   ? categories.includes(cleanCat)
                     ? 'header-link active-header-link'
                     : 'header-link'
+                  : location.search
+                      ?.split('=')[1]
+                      ?.split('-')
+                      .includes(cleanCat)
+                  ? 'header-link active-header-link'
                   : 'header-link'
               }
               onClick={() => handleCategoryClick(cleanCat)}
