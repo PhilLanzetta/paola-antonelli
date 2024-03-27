@@ -13,7 +13,7 @@ const IndexPage = ({ data, location }) => {
   )
   const [view, setView] = useState()
   const [userClick, setUserClick] = useState(false)
-  const params = new URL('http://localhost:8000')
+  const params = new URL('https://paola-dev.netlify.app/')
 
   useEffect(() => {
     if (localStorage.getItem('view')) {
