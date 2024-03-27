@@ -45,6 +45,7 @@ const Header = ({
           const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
           console.log(cleanCat)
           console.log(location.search?.split('=')[1]?.split('-').includes(cleanCat))
+          console.log(categories.length)
           return (
             <button
               key={index}
