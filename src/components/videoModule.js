@@ -12,7 +12,7 @@ const VideoModule = ({ content }) => {
           height={'100%'}
         ></ReactPlayer>
       </div>
-      <p>{content.videoCaption}</p>
+      <p className='figcaption'>{content.videoCaption}</p>
     </div>
   )
 }
