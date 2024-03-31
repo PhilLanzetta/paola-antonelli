@@ -124,24 +124,39 @@ const Header = ({
           </motion.div>
         )}
       </AnimatePresence>
-      {!location && open && projectCategory && (
-        <div className='expand-container'>
-          {categoryHeadings
-            .filter((a) => !projectCategory.includes(a))
-            .map((category, index) => {
-              const cleanCat = category.replaceAll('&', '').replaceAll(' ', '')
-              return (
-                <Link
-                  key={index}
-                  className='header-link'
-                  to={`/?filters=${cleanCat}`}
-                >
-                  {category}
-                </Link>
-              )
-            })}
-        </div>
-      )}
+      <AnimatePresence>
+        {!location && open && projectCategory && (
+          <motion.div
+            className='expand-container'
+            key='content'
+            initial='collapsed'
+            animate='open'
+            exit='collapsed'
+            variants={{
+              open: { opacity: 1, width: 'auto' },
+              collapsed: { opacity: 0, width: 0 },
+            }}
+            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            {categoryHeadings
+              .filter((a) => !projectCategory.includes(a))
+              .map((category, index) => {
+                const cleanCat = category
+                  .replaceAll('&', '')
+                  .replaceAll(' ', '')
+                return (
+                  <Link
+                    key={index}
+                    className='header-link'
+                    to={`/?filters=${cleanCat}`}
+                  >
+                    {category}
+                  </Link>
+                )
+              })}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Link
         to='/about'
         className='header-link'
