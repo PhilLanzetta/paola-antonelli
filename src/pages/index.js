@@ -13,7 +13,7 @@ const IndexPage = ({ data, location }) => {
   )
   const [view, setView] = useState()
   const [userClick, setUserClick] = useState(false)
-  const params = new URL(process.env.URL_ADDRESS)
+  const params = new URL(process.env.GATSBY_URL_ADDRESS)
 
   useEffect(() => {
     if (localStorage.getItem('view')) {
