@@ -416,6 +416,5 @@ Home
 
 .expand-container {
   display: flex;
-  flex-wrap: nowrap;
-  height: 41px;
+  overflow: hidden;
 }
